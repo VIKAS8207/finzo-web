@@ -6,21 +6,21 @@ const caseStudies = [
   {
     id: 1,
     company: "cigna",
-    year: "// 2025",
+    year: "2025",
     title: "Cigna Smart Health Systems",
     description: "Revolutionizing patient care through predictive analytics and seamless AI-driven diagnostic integration tools.",
   },
   {
     id: 2,
     company: "aetna",
-    year: "// 2026",
+    year: "2026",
     title: "Aetna Health Data Ecosystem",
     description: "We automated Aetna's member data management using secure AI to provide personalized care and clinical insights.",
   },
   {
     id: 3,
     company: "Anthem",
-    year: "// 2026",
+    year: "2026",
     title: "Anthem Neural Care Network",
     description: "We deployed a custom LLM to automate Anthem's provider relations, reducing ticket latency by eighty-five percent.",
   },
@@ -49,12 +49,28 @@ export default function CaseStudiesSection() {
           {/* Col 2 & 3: Header Content spanning 2 columns */}
           <div className="col-span-1 lg:col-span-2 p-8 pt-24 pb-20">
             <div className="flex items-center gap-3 mb-8">
-              {/* Abstract slash icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80">
-                <path d="M4 18L10 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M10 18L16 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M16 18L22 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+  <defs>
+    {/* The View Window is now extremely wide (x="-20", width="64") 
+        so it ONLY clips the top (y="7") and bottom (height="10"), allowing the sides to overflow. */}
+    <clipPath id="view-window">
+      <rect x="-20" y="7" width="64" height="10" />
+    </clipPath>
+  </defs>
+  
+  <g clipPath="url(#view-window)">
+    {/* Line 1: Overflows left boundary (< 0) */}
+    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 2 */}
+    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 3: Perfectly Centered */}
+    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 4 */}
+    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 5: Overflows right boundary (> 24) */}
+    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+  </g>
+</svg>
               <span className="text-xs font-mono tracking-widest uppercase font-bold">Case Studies</span>
             </div>
             
@@ -90,7 +106,21 @@ export default function CaseStudiesSection() {
               </div>
 
               {/* Col 2: Year Tag */}
-              <div className="col-span-1 p-8 lg:pt-12">
+              <div className="col-span-1 p-8 lg:pt-12 flex items-center gap-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+                  <defs>
+                    <clipPath id={`view-window-${study.id}`}>
+                      <rect x="-20" y="7" width="64" height="10" />
+                    </clipPath>
+                  </defs>
+                  <g clipPath={`url(#view-window-${study.id})`}>
+                    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+                    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+                    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+                    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+                    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+                  </g>
+                </svg>
                 <span className="font-mono text-xs text-[#555] tracking-widest">
                   {study.year}
                 </span>
@@ -108,17 +138,20 @@ export default function CaseStudiesSection() {
 
               {/* Col 4: Action Arrow */}
               <div className="col-span-1 p-8 flex items-center justify-end lg:justify-end">
-                <svg 
-                  className="w-5 h-5 text-[#111] opacity-50 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="square" 
-                  strokeLinejoin="miter"
+                <svg
+                  className="w-5 h-6 text-[#111] opacity-50 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300"
+                  width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg"
                 >
-                  <polyline points="13 17 18 12 13 7" />
-                  <polyline points="6 17 11 12 6 7" />
+                  <circle cx="1.61321" cy="1.61321" r="1.5" fill="currentColor"></circle>
+                  <circle cx="5.73583" cy="1.61321" r="1.5" fill="currentColor"></circle>
+                  <circle cx="5.73583" cy="5.5566" r="1.5" fill="currentColor"></circle>
+                  <circle cx="9.85851" cy="5.5566" r="1.5" fill="currentColor"></circle>
+                  <circle cx="9.85851" cy="9.5" r="1.5" fill="currentColor"></circle>
+                  <circle cx="13.9811" cy="9.5" r="1.5" fill="currentColor"></circle>
+                  <circle cx="5.73583" cy="13.4434" r="1.5" fill="currentColor"></circle>
+                  <circle cx="9.85851" cy="13.4434" r="1.5" fill="currentColor"></circle>
+                  <circle cx="1.61321" cy="17.3868" r="1.5" fill="currentColor"></circle>
+                  <circle cx="5.73583" cy="17.3868" r="1.5" fill="currentColor"></circle>
                 </svg>
               </div>
 

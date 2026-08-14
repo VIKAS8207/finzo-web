@@ -27,11 +27,28 @@ export default function DataInfrastructureSection() {
           {/* Header Content spanning 2 columns */}
           <div className="col-span-1 lg:col-span-2 p-8 pt-32 pb-20">
             <div className="flex items-center gap-3 mb-8">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white opacity-80">
-                <path d="M4 18L10 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M10 18L16 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <path d="M16 18L22 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+  <defs>
+    {/* The View Window is now extremely wide (x="-20", width="64") 
+        so it ONLY clips the top (y="7") and bottom (height="10"), allowing the sides to overflow. */}
+    <clipPath id="view-window">
+      <rect x="-20" y="7" width="64" height="10" />
+    </clipPath>
+  </defs>
+  
+  <g clipPath="url(#view-window)">
+    {/* Line 1: Overflows left boundary (< 0) */}
+    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 2 */}
+    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 3: Perfectly Centered */}
+    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 4 */}
+    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 5: Overflows right boundary (> 24) */}
+    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+  </g>
+</svg>
               <span className="text-xs font-mono tracking-widest uppercase font-bold text-white/80">
                 Our Product
               </span>

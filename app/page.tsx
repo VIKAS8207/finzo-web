@@ -171,10 +171,7 @@ export default function Home() {
 
      
 
-      {/* --- REST OF THE PAGE --- */}
-      <div className="relative z-20 w-full border-none">
-        <BookNowSection />
-      </div>
+      
       
 
     </div>

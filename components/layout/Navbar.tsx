@@ -63,10 +63,10 @@ export default function Navbar() {
           <div className={`grid transition-all duration-500 ease-in-out bg-black/20 ${isSubOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
             <div className="overflow-hidden">
               <ul className="flex flex-col divide-y divide-white/5 border-t border-white/5">
-                {['Branding', 'Websites', 'E-commerce', 'Marketing'].map((subItem) => (
+                {['General Inquiries', 'Support', 'Press'].map((subItem) => (
                   <li key={subItem}>
                     <Link 
-                      href="/" 
+                      href="#" 
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="group flex items-center py-4 px-8 text-sm text-gray-400 hover:text-white hover:bg-white/[0.03] transition-colors"
                     >
@@ -107,15 +107,14 @@ export default function Navbar() {
         {/* CENTER ALIGNED LINKS */}
         <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 lg:gap-14">
           <AnimatedLink title="About" href="/about" />
-          <AnimatedLink title="Capabilities" href="/capabilities" />
-          <AnimatedLink title="Projects" href="/projects" />
+          <AnimatedLink title="Product" href="/product" />
+          <AnimatedLink title="Case studies" href="/case-studies" />
         </nav>
 
         {/* FAR RIGHT LINKS & HAMBURGER CONTAINER */}
         <div className="flex items-center justify-end w-[150px] md:w-[200px] gap-8 lg:gap-14 relative z-10">
           
           <div className="hidden md:flex items-center gap-8 lg:gap-14">
-            <AnimatedLink title="Contact" href="/contact" />
             
             {/* CLICK DROPDOWN TRIGGER */}
             <button 
@@ -150,15 +149,13 @@ export default function Navbar() {
       </header>
 
       {/* --- DESKTOP MEGA DROPDOWN (PURE CSS) --- */}
-      {/* CHANGED: top-[90px] changed to top-0, h-screen added to control the wrapper */}
       <div 
         className="hidden md:block fixed top-0 left-0 w-full h-screen overflow-hidden z-[105] pointer-events-none"
       >
-        {/* CHANGED: pt-[90px] added so the content sits below the header, while the background covers it */}
         <div 
           className={`w-full bg-[#050505] border-b border-white/10 pointer-events-auto pt-[90px] transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isDesktopDropdownOpen ? 'translate-y-0' : '-translate-y-full'}`}
         >
-          {/* Internal Grid strictly mimicking the reference image */}
+          {/* Internal Grid keeping the structure but updated to general footer details */}
           <div className="w-full max-w-full mx-auto grid grid-cols-3 divide-x divide-white/10">
             
             <div className="p-12 lg:p-16 flex flex-col justify-between min-h-[400px]">
@@ -167,63 +164,48 @@ export default function Navbar() {
                   FINZO INC. / EST. 2026
                 </p>
                 <h2 className="text-3xl lg:text-4xl font-bold tracking-tighter text-white leading-[1.1] max-w-sm">
-                  SYSTEMS ENGINEERING FOR THE MISSIONS THAT CANNOT FAIL.
+                  SYSTEMS DESIGN & DEVELOPMENT FOR THE MISSIONS THAT CANNOT FAIL.
                 </h2>
               </div>
-              <div className="flex items-center gap-16 mt-16">
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-mono text-gray-500 tracking-[0.2em] uppercase">Contact</span>
-                  <Link href="/contact" className="text-sm font-medium text-white hover:opacity-70 transition-opacity underline decoration-white/30 underline-offset-4">
-                    Start a conversation
-                  </Link>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <span className="text-[10px] font-mono text-gray-500 tracking-[0.2em] uppercase">Social</span>
-                  <Link href="#" className="text-sm font-medium text-white hover:opacity-70 transition-opacity">
-                    LinkedIn
-                  </Link>
+            </div>
+
+            <div className="p-12 lg:p-16 flex flex-col justify-between min-h-[400px]">
+              <div>
+                <p className="text-[10px] font-mono tracking-[0.2em] text-gray-500 uppercase mb-8">
+                  Contact & Socials
+                </p>
+                <div className="flex flex-col gap-10">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-mono text-gray-500 tracking-[0.2em] uppercase">Inquiries</span>
+                    <Link href="mailto:hello@finzo.com" className="text-sm font-medium text-white hover:opacity-70 transition-opacity">
+                      hello@finzo.com
+                    </Link>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-mono text-gray-500 tracking-[0.2em] uppercase">LinkedIn</span>
+                    <Link href="#" className="text-sm font-medium text-white hover:opacity-70 transition-opacity">
+                      linkedin.com/company/finzo
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-12 lg:p-16 flex flex-col">
-              <p className="text-[10px] font-mono tracking-[0.2em] text-gray-500 uppercase mb-8">
-                Capabilities
-              </p>
-              <ul className="flex flex-col divide-y divide-white/10 border-t border-white/10">
-                {['AI for Healthcare & Defense', 'Enterprise Data', 'DoD Manufacturing', 'Cybersecurity', 'VFusion™'].map((item, index) => (
-                  <li key={item}>
-                    <Link href="#" className="flex items-center gap-6 py-5 group">
-                      <span className="text-[10px] font-mono text-gray-600 transition-colors group-hover:text-white">
-                        0{index + 1}
-                      </span>
-                      <span className="text-sm text-gray-300 transition-colors group-hover:text-white">
-                        {item}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="p-12 lg:p-16 flex flex-col">
-              <p className="text-[10px] font-mono tracking-[0.2em] text-gray-500 uppercase mb-8">
-                Company
-              </p>
-              <ul className="flex flex-col divide-y divide-white/10 border-t border-white/10">
-                {['About Finzo', 'Our Origins', 'Project Examples', 'Careers', 'Contact'].map((item, index) => (
-                  <li key={item}>
-                    <Link href="#" className="flex items-center gap-6 py-5 group">
-                      <span className="text-[10px] font-mono text-gray-600 transition-colors group-hover:text-white">
-                        0{index + 1}
-                      </span>
-                      <span className="text-sm text-gray-300 transition-colors group-hover:text-white">
-                        {item}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="p-12 lg:p-16 flex flex-col justify-between min-h-[400px]">
+              <div>
+                <p className="text-[10px] font-mono tracking-[0.2em] text-gray-500 uppercase mb-8">
+                  Location
+                </p>
+                <div className="flex flex-col gap-10">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-mono text-gray-500 tracking-[0.2em] uppercase">Headquarters</span>
+                    <p className="text-sm font-medium text-gray-300 leading-relaxed">
+                      Raipur, Chhattisgarh<br />
+                      India
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             
           </div>
@@ -245,10 +227,9 @@ export default function Navbar() {
         <div className="flex-1 w-full flex flex-col justify-center px-4">
           <div className="flex flex-col w-full divide-y divide-white/10 border-t border-white/10">
             <NavItem title="About" />
-            <NavItem title="Capabilities" hasSubmenu={true} submenuId="capabilities" />
-            <NavItem title="Projects" />
+            <NavItem title="Product" />
+            <NavItem title="Case studies" />
             <NavItem title="Company" hasSubmenu={true} submenuId="company" />
-            <NavItem title="Contact" />
           </div>
         </div>
 

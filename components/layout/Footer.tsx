@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import CyberButton from '@/components/ui/CyberButton'; 
+import Image from 'next/image';
+import CyberButton from '@/components/ui/CyberButton';
 
 export default function Footer() {
   return (
@@ -43,7 +44,28 @@ export default function Footer() {
         {/* Content Wrapper - LEFT ALIGNED */}
         <div className="relative z-10 flex flex-col items-start justify-center py-32 px-10 md:px-16 w-full max-w-7xl">
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-gray-500 text-[10px] tracking-widest">\\\\\\</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+  <defs>
+    {/* The View Window is now extremely wide (x="-20", width="64") 
+        so it ONLY clips the top (y="7") and bottom (height="10"), allowing the sides to overflow. */}
+    <clipPath id="view-window">
+      <rect x="-20" y="7" width="64" height="10" />
+    </clipPath>
+  </defs>
+  
+  <g clipPath="url(#view-window)">
+    {/* Line 1: Overflows left boundary (< 0) */}
+    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 2 */}
+    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 3: Perfectly Centered */}
+    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 4 */}
+    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 5: Overflows right boundary (> 24) */}
+    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+  </g>
+</svg>
             <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-gray-300">Get Started</span>
           </div>
           
@@ -77,10 +99,8 @@ export default function Footer() {
         {/* Column 1: Logo */}
         <div className="p-10 md:p-16 flex items-start justify-start">
           <Link href="/" className="flex items-center gap-2 group">
-             <svg width="32" height="32" viewBox="0 0 24 24" fill="white" className="group-hover:fill-yellow-500 transition-colors">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-             </svg>
-             <span className="text-3xl font-black tracking-tighter text-white">finzo</span>
+             <Image src="/images/finzologo.png" alt="Finzo" width={22} height={22} className="w-8 h-8 object-contain" />
+             <span className="text-3xl font-bold text-white">finzo</span>
           </Link>
         </div>
 

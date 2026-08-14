@@ -76,7 +76,8 @@ const WORKFLOW_ITEMS: WorkflowItem[] = [
   },
 ];
 
-const ITEM_MIN_VH = 42;
+// stacked "cards" — each pins at the top and the next one slides over it
+const ITEM_MIN_VH = 65;
 
 export default function WorkflowExplorerSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -114,7 +115,28 @@ export default function WorkflowExplorerSection() {
         <div className="hidden lg:block col-span-1" />
         <div className="col-span-1 lg:col-span-2 p-8 pt-24 pb-12">
           <div className="flex items-center gap-3 mb-6">
-            <span className="w-2.5 h-2.5 bg-[#141fdb]" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+  <defs>
+    {/* The View Window is now extremely wide (x="-20", width="64") 
+        so it ONLY clips the top (y="7") and bottom (height="10"), allowing the sides to overflow. */}
+    <clipPath id="view-window">
+      <rect x="-20" y="7" width="64" height="10" />
+    </clipPath>
+  </defs>
+  
+  <g clipPath="url(#view-window)">
+    {/* Line 1: Overflows left boundary (< 0) */}
+    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 2 */}
+    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 3: Perfectly Centered */}
+    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 4 */}
+    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 5: Overflows right boundary (> 24) */}
+    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+  </g>
+</svg>
             <span className="text-xs font-mono tracking-widest uppercase font-bold text-black/70">
               Workflows
             </span>
@@ -157,11 +179,35 @@ export default function WorkflowExplorerSection() {
               key={item.id}
               ref={(el) => { sectionRefs.current[idx] = el; }}
               data-index={idx}
-              style={{ minHeight: `${ITEM_MIN_VH}vh` }}
-              className="flex flex-col justify-center p-8 border-b border-black/5 lg:border-b-0"
+              style={{ minHeight: `${ITEM_MIN_VH}vh`, zIndex: idx + 1 }}
+              className="sticky top-0 flex flex-col justify-center p-8 bg-[#E5E5E5] shadow-[0_-12px_30px_rgba(0,0,0,0.06)]"
             >
-              <span className="w-2.5 h-2.5 bg-[#141fdb] mb-4" />
-              <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-3">{item.title}</h3>
+              {/* Changed to flex layout so the square is adjacent to the text */}
+              <div className="flex items-center gap-3 mb-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-80 overflow-visible">
+  <defs>
+    {/* The View Window is now extremely wide (x="-20", width="64") 
+        so it ONLY clips the top (y="7") and bottom (height="10"), allowing the sides to overflow. */}
+    <clipPath id="view-window">
+      <rect x="-20" y="7" width="64" height="10" />
+    </clipPath>
+  </defs>
+  
+  <g clipPath="url(#view-window)">
+    {/* Line 1: Overflows left boundary (< 0) */}
+    <path d="M-1 20L5 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 2 */}
+    <path d="M4 20L10 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 3: Perfectly Centered */}
+    <path d="M9 20L15 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 4 */}
+    <path d="M14 20L20 4" stroke="currentColor" strokeWidth="3.5" />
+    {/* Line 5: Overflows right boundary (> 24) */}
+    <path d="M19 20L25 4" stroke="currentColor" strokeWidth="3.5" />
+  </g>
+</svg>
+                <h3 className="text-2xl md:text-3xl font-medium tracking-tight">{item.title}</h3>
+              </div>
               <p className="text-black/50 text-sm leading-relaxed max-w-xs">{item.description}</p>
             </div>
           ))}
@@ -172,8 +218,8 @@ export default function WorkflowExplorerSection() {
           {WORKFLOW_ITEMS.map((item, idx) => (
             <div
               key={item.id}
-              style={{ minHeight: `${ITEM_MIN_VH}vh` }}
-              className="flex items-center justify-center p-6 md:p-10"
+              style={{ minHeight: `${ITEM_MIN_VH}vh`, zIndex: idx + 1 }}
+              className="sticky top-0 flex items-center justify-center p-6 md:p-10 bg-[#E5E5E5] shadow-[0_-12px_30px_rgba(0,0,0,0.06)]"
             >
               <div
                 className={`w-full max-w-[380px] rounded-lg border bg-white transition-all duration-500 ${
