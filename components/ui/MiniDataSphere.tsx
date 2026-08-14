@@ -23,7 +23,11 @@ const basePoints = Array.from({ length: NUM_POINTS }).map((_, i) => {
   return { baseAngle, bendDirection, twistIntensity, curveRadius, duration, dotRadius };
 });
 
-export default function MiniDataSphere() {
+interface MiniDataSphereProps {
+  color?: string;
+}
+
+export default function MiniDataSphere({ color = "#ffffff" }: MiniDataSphereProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const pathsRef = useRef<(SVGPathElement | null)[]>([]);
   const circlesRef = useRef<(SVGCircleElement | null)[]>([]);
@@ -160,36 +164,36 @@ export default function MiniDataSphere() {
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[70%] bg-white/[0.05] rounded-full blur-[20px] pointer-events-none" />
 
-      <svg 
+      <svg
         ref={svgRef}
-        className="absolute inset-0 w-full h-full" 
-        viewBox="0 0 200 200" 
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 200 200"
         fill="none"
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
       >
         <defs>
           <radialGradient id="miniLineGlow" gradientUnits="userSpaceOnUse" cx="100" cy="100" r="100">
-            <stop stopColor="White" stopOpacity="0.4" offset="0" />
-            <stop ref={stop1Ref} stopColor="White" stopOpacity="0.4" offset="0" />
-            <stop ref={stop2Ref} stopColor="White" stopOpacity="1" offset="0" />
-            <stop ref={stop3Ref} stopColor="White" stopOpacity="0.4" offset="0" />
-            <stop stopColor="White" stopOpacity="0.4" offset="1" />
+            <stop stopColor={color} stopOpacity="0.4" offset="0" />
+            <stop ref={stop1Ref} stopColor={color} stopOpacity="0.4" offset="0" />
+            <stop ref={stop2Ref} stopColor={color} stopOpacity="1" offset="0" />
+            <stop ref={stop3Ref} stopColor={color} stopOpacity="0.4" offset="0" />
+            <stop stopColor={color} stopOpacity="0.4" offset="1" />
           </radialGradient>
         </defs>
 
         {basePoints.map((pt, index) => (
           <g key={index}>
-            <path 
+            <path
               ref={(el) => { pathsRef.current[index] = el; }}
               stroke="url(#miniLineGlow)"
               strokeWidth="1.2" /* Significantly thicker lines for small scale */
               fill="none"
             />
-            <circle 
+            <circle
               ref={(el) => { circlesRef.current[index] = el; }}
-              r={pt.dotRadius} 
-              fill="white" 
+              r={pt.dotRadius}
+              fill={color}
               className="opacity-90"
             />
           </g>

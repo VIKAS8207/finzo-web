@@ -11,8 +11,10 @@ import FeaturesGridSection from '@/components/home-components/FeaturesGridSectio
 import ImageExpandSection from '@/components/home-components/ImageExpandSection';
 
 import DataInfrastructureSection from '@/components/home-components/DataInfrastructureSection';
+import WorkflowExplorerSection from '@/components/home-components/WorkflowExplorerSection';
+import RotatingDialSection from '@/components/home-components/RotatingDialSection';
+import FeaturesSplitSection from '@/components/home-components/FeaturesSplitSection';
 import CaseStudiesSection from '@/components/home-components/CaseStudiesSection';
-import FloatingChatBot from '@/components/ui/FloatingChatBot';
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +42,7 @@ export default function Home() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="w-full min-h-screen bg-[#050505] text-white flex flex-col items-center font-sans overflow-x-hidden relative">
+    <div ref={containerRef} className="w-full min-h-screen bg-[#050505] text-white flex flex-col items-center font-sans overflow-x-clip relative">
       
       {/* --- AMBIENT ELEMENTS --- */}
       {/* Three Vertical Lines (Divides screen into 4 equal parts) */}
@@ -159,16 +161,13 @@ export default function Home() {
       {/* --- NEW FEATURES GRID COMPONENT --- */}
       <FeaturesGridSection />
       <ImageExpandSection />
-      <CaseStudiesSection />
-
-      
-
-      
-      
-      
+      <CaseStudiesSection />     
       <DataInfrastructureSection />
+      <WorkflowExplorerSection />
+      <RotatingDialSection />
+      <FeaturesSplitSection />
       <ProductivitySection />
-      <FloatingChatBot />
+     
 
      
 

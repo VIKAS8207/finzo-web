@@ -34,7 +34,7 @@ export default function CyberButton({ text = "Build A Workflow", onClick, classN
           THE EXPANDING BACKGROUND 
           w-[44px] perfectly matches the inner height (48px - 4px for top/bottom borders) to keep the box a perfect square.
         */}
-        <div className="absolute left-0 top-0 h-full w-[44px] bg-[#141fdb] transition-all duration-[600ms] ease-in-out group-hover:w-full z-0 rounded-[4px]"></div>
+        <div className="absolute left-0 top-0 h-full w-[44px] bg-black transition-all duration-[600ms] ease-in-out group-hover:w-full z-0 rounded-[4px]"></div>
 
         {/* 
           THE ICON CONTAINER
